@@ -22,4 +22,3 @@ pack (x:xs) = foldl func [[x]] xs
   where func xs elm  
           | elm == (last (last xs)) = (init xs) ++ [((last xs) ++ [elm])]
           | otherwise               = xs ++ [[elm]]
-

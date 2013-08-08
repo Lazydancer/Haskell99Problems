@@ -15,4 +15,7 @@ Example in Haskell:
 -}
 
 dropEvery :: [a] -> Int -> [a]
-dropEvery = 
+dropEvery xs n = helper xs n 
+  where helper [] _ = []
+        helper (x:xs) 1 = helper xs n
+        helper (x:xs) a = x : helper xs (a-1)

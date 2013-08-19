@@ -17,13 +17,6 @@ eda
 import System.Random
 
 rndSelect :: [a] -> Int -> IO [a]
-rndSelect xs n
-  | n /= 0 = do gen <- getStdGen
-                let (a,_) = randomR (0,length xs) gen 
-                let b     = dropElem xs a  
-                rndSelect b (n-1) 
-  | otherwise = return xs 
-
-dropElem :: [a] -> Int -> [a]
-dropElem (x:xs) 0 = xs
-dropElem (x:xs) n = x : dropElem xs (n-1) 
+rndSelect xs n = do
+  gen <- getStdGen
+  return $ take n [ xs !! x | x <- randomRs (0, (length xs) - 1) gen]
